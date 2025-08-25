@@ -3,7 +3,16 @@ package game;
 import units.*;
 
 public class GameEngine {
+    // Singleton principle
+    private static GameEngine instance = null;
     private Board board;
+
+    public static GameEngine getInstance() {
+        if (instance == null) {
+            instance = new GameEngine();
+        }
+        return instance;
+    }
 
     public GameEngine() {
         this.board = new Board(); // Initialize the board
