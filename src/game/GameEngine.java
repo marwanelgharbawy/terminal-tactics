@@ -1,5 +1,23 @@
 package game;
 
-public class GameEngine {
+import units.*;
 
+public class GameEngine {
+    private Board board;
+
+    public GameEngine() {
+        this.board = new Board(); // Initialize the board
+    }
+
+    public void placeUnit(int row, int col, Unit unit) {
+            board.placeUnitAt(row, col, unit);
+    }
+
+    public Unit getUnit(int row, int col) {
+        return board.getUnitAt(row, col);
+    }
+
+    public void deleteUnit(int row, int col) {
+        board.placeUnitAt(row, col, null); // Remove unit by setting to null
+    }
 }
