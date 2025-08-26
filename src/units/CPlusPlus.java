@@ -7,6 +7,7 @@ public class CPlusPlus extends Unit {
         this.health = 800;
         this.damage = 40;
         this.range = 3;
+        this.areaOfEffect = 0; // Single target
     }
 
     @Override

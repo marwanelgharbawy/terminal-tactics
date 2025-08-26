@@ -6,7 +6,7 @@ public abstract class Unit {
     protected int health;
     protected int damage;
     protected int range;
-    protected int areaOfEffect; // 0 for single target
+    protected int areaOfEffect; // 0 for single target, probably won't be used as
 
     // Abstract, depending on each unit's behavior
     public abstract void dealDamage(Unit target);
