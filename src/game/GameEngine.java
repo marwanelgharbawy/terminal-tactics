@@ -5,7 +5,8 @@ import units.*;
 public class GameEngine {
     // Singleton principle
     private static GameEngine instance = null;
-    private Board board;
+    private final Board setupBoard;
+    private Board gameBoard;
 
     public static GameEngine getInstance() {
         if (instance == null) {
@@ -15,28 +16,31 @@ public class GameEngine {
     }
 
     public GameEngine() {
-        this.board = new Board(); // Initialize the board
+        this.setupBoard = new Board(); // Initialize Board for setup phase
+        this.gameBoard = new Board();  // Initialize Board for game phase
     }
 
     // Board setup methods
     public void placeUnit(int row, int col, Unit unit) {
-            board.placeUnitAt(row, col, unit);
+            setupBoard.placeUnitAt(row, col, unit);
     }
 
     public Unit getUnit(int row, int col) {
-        return board.getUnitAt(row, col);
+        return setupBoard.getUnitAt(row, col);
     }
 
     public void deleteUnit(int row, int col) {
-        board.placeUnitAt(row, col, null); // Remove unit by setting to null
+        setupBoard.placeUnitAt(row, col, null); // Remove unit by setting to null
     }
 
     // Game logic methods
-    public void startGame() {
+    public void startRound() {
         // TODO: Game logic, including unit movement (forward) and attacking
+        gameBoard = new Board(setupBoard); // Deep copy of the setupBoard, will be used once for game phase
     }
 
     public void unitAction(Unit unit) {
+        // Attackers only start attacking when they have a target in range
         // Attack if enemy in range, else move forward
     }
 
@@ -45,15 +49,23 @@ public class GameEngine {
     }
 
     public void unitAttack(Unit attacker, Unit target) {
-        attacker.dealDamage(target);
+        // Apply damage from attacker to target
+        target.takeDamage(attacker.getDamage());
+    }
+
+    public void applyDamageToArea(int damage, int row, int col) {
+        // Apply damage to all enemy units in that area
+        // If team red attacks, team blue enemy units only are affected, and vice versa
     }
 
     public void killUnit(Unit unit) {
+        // Remove unit from the board
         // unit.die(); ?
+        gameBoard.removeUnit(unit);
     }
 
-    public void endGame() {
-        // Reset the board
+    public void endRound() {
+        // Reset the setupBoard
         // Score calculation
     }
 }
