@@ -2,11 +2,11 @@ package units;
 
 public abstract class Unit {
     // For current design, all units attack with the same speed
-    private String name;
-    private int health;
-    private int damage;
-    private int range;
-    private int areaOfEffect; // 0 for single target
+    protected String name;
+    protected int health;
+    protected int damage;
+    protected int range;
+    protected int areaOfEffect; // 0 for single target
 
     // Abstract, depending on each unit's behavior
     public abstract void dealDamage(Unit target);
