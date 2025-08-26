@@ -8,7 +8,21 @@ public abstract class Unit {
     protected int range;
     protected int areaOfEffect; // 0 for single target, probably won't be used as
 
-    // Abstract, depending on each unit's behavior
+    // Empty constructor
+    public Unit() {
+
+    }
+
+    // Copy constructor
+    public Unit(Unit source) {
+        this.name = source.name;
+        this.health = source.health;
+        this.damage = source.damage;
+        this.range = source.range;
+        this.areaOfEffect = source.areaOfEffect;
+    }
+
+    // Each unit will have different behavior of dealing damage
     public abstract void dealDamage(Unit target);
 
     public void takeDamage(int damage) {
@@ -23,5 +37,17 @@ public abstract class Unit {
         if (this.health <= 0) {
             System.out.println(this.name + " has failed to run.");
         }
+    }
+
+    // Each unit must implement its own copy method to for correct types
+    public abstract Unit copy();
+
+    // Getters
+    public int getDamage() {
+        return this.damage;
+    }
+
+    public int getAOE() {
+        return this.areaOfEffect;
     }
 }
