@@ -11,13 +11,6 @@ public class GameEngine {
     private Player playerBlue;
     private Player currentPlayer;
 
-    public static GameEngine getInstance() {
-        if (instance == null) {
-            instance = new GameEngine();
-        }
-        return instance;
-    }
-
     public GameEngine() {
         this.setupBoard = new Board(); // Initialize Board for setup phase
         this.gameBoard = new Board();  // Initialize Board for game phase
