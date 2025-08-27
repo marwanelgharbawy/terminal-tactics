@@ -3,8 +3,6 @@ package main;
 import game.*;
 import units.*;
 
-import java.net.http.HttpClient;
-
 public class Main {
     public static void main(String[] args) {
         // Game setup initialization
@@ -31,10 +29,10 @@ public class Main {
             inputUnit = UnitType.JAVA;
             switch (inputUnit) {
                 case UnitType.JAVA:
-                    currentPlayer.placeUnit(new Java());
+                    currentPlayer.placeUnit(inputRow, inputCol, new Java());
                     break;
                 case UnitType.CPLUSPLUS:
-                    currentPlayer.placeUnit(new CPlusPlus());
+                    currentPlayer.placeUnit(inputRow, inputCol, new CPlusPlus());
                     break;
                 default:
                     System.out.println("Invalid unit type.");

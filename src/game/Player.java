@@ -22,7 +22,7 @@ public class Player {
         this.gameEngine = gameEngine;
     }
 
-    public void placeUnit(Unit unit) {
-
+    public void placeUnit(int row, int col, Unit unit) {
+        gameEngine.placeUnit(row, col, unit);
     }
 }
