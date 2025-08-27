@@ -12,11 +12,17 @@ public class Player {
     private int health;
     private int balance;
     private ArrayList<Unit> units; // List of units owned by the player
+    private GameEngine gameEngine;
 
-    public Player(String name) {
+    public Player(String name, GameEngine gameEngine) {
         this.name = name;
         this.health = Constants.DefaultHealth;   // Default health
         this.balance = Constants.DefaultBalance; // Default balance
         this.units = new ArrayList<>(); // Initialize the list of units
+        this.gameEngine = gameEngine;
+    }
+
+    public void placeUnit(Unit unit) {
+
     }
 }

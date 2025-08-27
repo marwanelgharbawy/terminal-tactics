@@ -7,6 +7,8 @@ public class GameEngine {
     private static GameEngine instance = null;
     private final Board setupBoard;
     private Board gameBoard;
+    private Player playerRed;
+    private Player playerBlue;
 
     public static GameEngine getInstance() {
         if (instance == null) {
@@ -18,6 +20,11 @@ public class GameEngine {
     public GameEngine() {
         this.setupBoard = new Board(); // Initialize Board for setup phase
         this.gameBoard = new Board();  // Initialize Board for game phase
+    }
+
+    public void setPlayers(Player playerRed, Player playerBlue) {
+        this.playerRed = playerRed;
+        this.playerBlue = playerBlue;
     }
 
     // Board setup methods
