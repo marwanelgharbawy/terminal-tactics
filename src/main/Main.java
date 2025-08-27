@@ -26,28 +26,29 @@ public class Main {
         UnitType inputUnit;
         Player currentPlayer;
         int unitCount = 0;
-        Boolean endOfTurn = false;
+        boolean endOfTurn = false;
 
         // Start with Player Red
         gameEngine.setCurrentPlayer(playerRed);
 
-        while (endOfTurn != true) {
+        while (!endOfTurn) {
             currentPlayer = gameEngine.getCurrentPlayer();
             System.out.println(currentPlayer.getName() + "'s turn to place units.");
             // User input simulation
-            inputRow = random.nextInt(0,    3);
-            inputCol = random.nextInt(0, 5);
+            inputRow = random.nextInt(0,    5);
+            inputCol = random.nextInt(0, 8);
             unitRandomizer = random.nextInt(0, 2);
             inputUnit = unitRandomizer == 0 ? UnitType.JAVA : UnitType.CPLUSPLUS;
+            System.out.println("Unit: " + inputUnit + " (" + inputRow + ", " + inputCol + ")");
             try {
-                currentPlayer.placeUnit(inputRow, inputCol, inputUnit.createUnit());
+                gameEngine.placeUnit(inputUnit.createUnit(), inputRow, inputCol, currentPlayer);
             } catch (Exception e) {
-                System.out.println("Invalid placement. Try again.");
+                System.out.println(e.getMessage());
                 continue;
             }
             unitCount++;
             gameEngine.switchCurrentPlayer();
-            if (unitCount >= 5) {
+            if (unitCount > 8) {
                 endOfTurn = true; // End after one turn, test
             }
             System.out.println("-----------------------------------------------------------");

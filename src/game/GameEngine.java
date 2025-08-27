@@ -9,7 +9,7 @@ public class GameEngine {
     private Board gameBoard;
     private Player playerRed;
     private Player playerBlue;
-    private Player currentPlayer;
+    private Player currentPlayer; // Could be removed
 
     public static GameEngine getInstance() {
         if (instance == null) {
@@ -41,8 +41,17 @@ public class GameEngine {
         }
     }
 
-    public void placeUnit(int row, int col, Unit unit) {
+    public void placeUnit(Unit unit, int row, int col, Player player) throws IllegalArgumentException {
+        boolean validRed = (player == playerRed && col < 4);
+        boolean validBlue = (player == playerBlue && col > 3);
+        // TODO: Fix actual error messages from Board and GameEngine
+        if (validRed || validBlue) {
+            System.out.println(player.getName() + " placing " + unit.getName() + " at (" + row + ", " + col + ")");
             setupBoard.placeUnitAt(row, col, unit);
+            player.addUnit(unit);
+        } else {
+            throw new IllegalArgumentException("Invalid side placement");
+        }
     }
 
     public Unit getUnit(int row, int col) {

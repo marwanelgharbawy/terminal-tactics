@@ -25,11 +25,14 @@ public class Board {
         return grid[row][col];
     }
 
-    public void placeUnitAt(int row, int col, Unit unit) {
-        if (grid[row][col] == null) {
-            grid[row][col] = unit;
+    public void placeUnitAt(int row, int col, Unit unit) throws IllegalArgumentException {
+        // Check if not out of bounds
+        if (row < 0 || row >= Constants.BOARD_ROWS || col < 0 || col >= Constants.BOARD_COLS) {
+            throw new IllegalArgumentException("Coordinates (" + row + ", " + col + ") are out of bounds.");
+        } else if (grid[row][col] != null) {
+            throw new IllegalArgumentException("Cell (" + row + ", " + col + ") is already occupied");
         } else {
-            throw new IllegalArgumentException("Cell is already occupied");
+            grid[row][col] = unit;
         }
     }
 

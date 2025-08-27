@@ -16,19 +16,18 @@ public class Player {
 
     public Player(String name, GameEngine gameEngine) {
         this.name = name;
-        this.health = Constants.DefaultHealth;   // Default health
-        this.balance = Constants.DefaultBalance; // Default balance
+        this.health = Constants.DEFAULT_HEALTH;   // Default health
+        this.balance = Constants.DEFAULT_BALANCE; // Default balance
         this.units = new ArrayList<>(); // Initialize the list of units
         this.gameEngine = gameEngine;
-    }
-
-    public void placeUnit(int row, int col, Unit unit) {
-        System.out.println(this.name + " placing " + unit.getName() + " at (" + row + ", " + col + ")");
-        gameEngine.placeUnit(row, col, unit);
     }
 
     // Getters
     public String getName() {
         return this.name;
+    }
+
+    public void addUnit(Unit unit) {
+        this.units.add(unit);
     }
 }
