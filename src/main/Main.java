@@ -21,23 +21,15 @@ public class Main {
         int inputCol = 0;
         UnitType inputUnit;
         Player currentPlayer = playerRed;
-        while (true) {
+        Boolean endOfTurn = false;
+        while (endOfTurn != true) {
             System.out.println("Player Red's turn.");
             // User input simulation
             inputRow = 0;
             inputCol = 0;
             inputUnit = UnitType.JAVA;
-            switch (inputUnit) {
-                case UnitType.JAVA:
-                    currentPlayer.placeUnit(inputRow, inputCol, new Java());
-                    break;
-                case UnitType.CPLUSPLUS:
-                    currentPlayer.placeUnit(inputRow, inputCol, new CPlusPlus());
-                    break;
-                default:
-                    System.out.println("Invalid unit type.");
-                    continue;
-            }
+            currentPlayer.placeUnit(inputRow, inputCol, inputUnit.createUnit());
+            endOfTurn = true; // End after one turn, test
         }
     }
 }
