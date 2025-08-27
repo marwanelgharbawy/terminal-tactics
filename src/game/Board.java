@@ -6,16 +6,16 @@ public class Board {
     private Unit[][] grid;
 
     public Board() {
-        // Board of 8 rows and 5 columns (4 rows for each player)
+        // Board of 5 rows and 8 columns (4 columns for each player, right facing left)
         // All cells are null initially
-        this.grid = new Unit[8][5];
+        this.grid = new Unit[Constants.BOARD_ROWS][Constants.BOARD_COLS];
     }
 
     // Copy constructor
     public Board(Board source) {
-        this.grid = new Unit[8][5];
-        for (int i = 0; i < 8; i++) {
-            for (int j = 0; j < 5; j++) {
+        this.grid = new Unit[Constants.BOARD_ROWS][Constants.BOARD_COLS];
+        for (int i = 0; i < Constants.BOARD_ROWS; i++) {
+            for (int j = 0; j < Constants.BOARD_COLS; j++) {
                 this.grid[i][j] = source.grid[i][j].copy(); // Deep copy each unit
             }
         }
@@ -35,8 +35,8 @@ public class Board {
 
     public void removeUnit(Unit unit) {
         // Search for unit and remove it
-        for (int i = 0; i < grid.length; i++) {
-            for (int j = 0; j < grid[i].length; j++) {
+        for (int i = 0; i < Constants.BOARD_ROWS; i++) {
+            for (int j = 0; j < Constants.BOARD_COLS; j++) {
                 if (grid[i][j] == unit) {
                     grid[i][j] = null;
                     return;
