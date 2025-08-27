@@ -43,6 +43,14 @@ public abstract class Unit {
     public abstract Unit copy();
 
     // Getters
+    public String getName(){
+        return this.name;
+    }
+
+    public int getHealth(){
+        return this.health;
+    }
+
     public int getDamage() {
         return this.damage;
     }

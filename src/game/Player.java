@@ -23,6 +23,12 @@ public class Player {
     }
 
     public void placeUnit(int row, int col, Unit unit) {
+        System.out.println(this.name + " placing " + unit.getName() + " at (" + row + ", " + col + ")");
         gameEngine.placeUnit(row, col, unit);
+    }
+
+    // Getters
+    public String getName() {
+        return this.name;
     }
 }

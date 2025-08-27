@@ -9,6 +9,7 @@ public class GameEngine {
     private Board gameBoard;
     private Player playerRed;
     private Player playerBlue;
+    private Player currentPlayer;
 
     public static GameEngine getInstance() {
         if (instance == null) {
@@ -28,6 +29,18 @@ public class GameEngine {
     }
 
     // Board setup methods
+    public void setCurrentPlayer(Player player) {
+        this.currentPlayer = player;
+    }
+
+    public void switchCurrentPlayer() {
+        if (currentPlayer == playerRed) {
+            currentPlayer = playerBlue;
+        } else {
+            currentPlayer = playerRed;
+        }
+    }
+
     public void placeUnit(int row, int col, Unit unit) {
             setupBoard.placeUnitAt(row, col, unit);
     }
@@ -74,5 +87,10 @@ public class GameEngine {
     public void endRound() {
         // Reset the setupBoard
         // Score calculation
+    }
+
+    // Getters
+    public Player getCurrentPlayer() {
+        return this.currentPlayer;
     }
 }
